@@ -1,0 +1,62 @@
+1) Caso d'uso UTENTE:
+-Registrazione: l'utente chiede al sistema di registrarsi. Compila la form per l'iscrizione con: nome, cognome, username e password. Il sistema registra il nuovo utente. 
+	Se i campi sono incompleti oppure lo username è gia usato, viene mostrato un messaggio d'errore.
+	!!Se viene utilizzata la password speciale, si viene registrati come amministratore.
+-Login: l'utente compila la form per il login con username e password. Il sistema autentica l'utente e mostra la pagina di benvenuto.
+	Se i campi sono incompleti o errati, viene mostrato un messaggio di errore.
+-Visualizzazione profilo: l'utente chiede al sistema di visualizzare il proprio profilo. Il sistema mostra i dati dell'utente e i messaggi ricevuti dagli admin.
+-Aggiornamento profilo: l'utente chiede al sistema di modificare il proprio profilo. Il sistema mostra la form per aggiornare i dati. L'utente aggiorna i dati e conferma. Il sistema aggiorna i dati dell'utente e li mostra.
+	Se i campi sono incompleti o errati, il sistema mostra un messaggio d'errore.
+
+
+
+2) Caso d'usto UTENTE CON RUOLO AMMINISTRATORE:
+!!-Visualizzazione utenti: l'utente (ADMIN), chiede al sistema di accedere alle funzionalità da admin, il sistema riconosce il ruolo dell'utente e mostra tutti gli utenti del sistema.
+	Se l'utente non viene riconosciuto come admin, gli viene negato l'accesso.
+!!-Aggiornamento ruolo utente: l'admin modifica il ruolo di un utente, il sistema registra la modifica e mostra i dati aggiornati.
+!!-Cancellazione utente: l'admin chiede al sistema di cancellare un utente. Il sistema mostra i dati dell'utente e chiede conferma. L'admin conferma e il sistema registra la cancellazione.
+!!-Cancellazione progetto: l'admin chiede al sistema di cancellare un progetto di un utente. Il sistema mostra i dati del progetto e chiede conferma. L'admin conferma e il sistema registra la cancellazione.
+!!-Creazione messaggio: l'admin chiede al sistema di inviare un messaggio all'utente compilando una form con il testo. Il sitema registra il messaggio. 
+
+
+
+3) Caso d'uso PROGETTO:
+-Creazione progetto: l'utente chiede al sistema di creare un nuovo progetto. Compila la form con il nome. Il sistema registra il nuovo progetto e ne mostra i dati.
+	Se i campi sono incompleti oppure l'utente ha già un progetto con quel nome, viene mostrato un messaggio d'errore.
+-Visualizzazione progetti: l'utente chiede al sistema di visualizzare i propri progetti. Il sistema mostra i progetti creati dall'utente.
+-Visualizzazione progetti condivisi: l'utente chiede al sistema di visualizzare i progetti condivisi con lui. Il sistema mostra i progetti condivisi con l'utente.
+-Aggiornamento progetto: l'utente chiede al sistema di modificare i dati di un progetto. Il sistema mostra la form per aggiornare i dati. L'utente aggiorna i dati e conferma. Il sistema aggiorna i dati del progetto e li mostra.
+	Se i campi sono incompleti oppure l'utente ha già un progetto con quel nome, il sistema mostra un messaggio d'errore.
+-Cancellazione progetto: l'utente chiede al sistema di cancellare un progetto. Il sistema mostra i dati del progetto e chiede conferma. L'utente conferma e il sistema registra la cancellazione.
+-Condivisione progetto: l'utente chidede al sistema di condividere un proprio progetto. Il sistema chiede all'utente lo username dell'utente con cui vuole condividere il progetto. L'utente inserisce lo username e conferma. Il sistema registra la condivisione.
+	Se non esiste un utente con quell'username il sistema mostra un messaggio d'errore.
+	
+
+
+4) Caso d'uso TASK:
+-Creazione task: l'utente chiede al sistema di aggiungere un task al progetto. Compila la form con: nome e descrizione. Il sistema registra il nuovo task e ne mostra i dati.
+	Se i dati sono incompleti o esiste già un task con quel nome per quel progetto, viene mostrato un messaggio d'errore.
+-Aggiornamento task: l'utente chiede al sistema di modificare i dati di un task del progetto. Il sistema mostra la form per aggiornare i dati. L'utente aggiorna i dati e conferma. Il sistema aggiorna i dati del task e li mostra.
+	Se i dati sono incompleti o esiste già un task con quel nome per quel progetto, viene mostrato un messaggio d'errore.
+-Cancellazoine task: l'utente chiede al sistema di cancellare un task. Il sistema mostra i dati del task e chiede conferma. L'utente conferma e il sistema registra la cancellazione.
+-Assegnazione task: l'utente chide al sistema di assegnare il task ad un utente con cui è condiviso il progetto. Il sistema chiede di selezionare (da un elenco) lo username dell' utente a cui si vuole assegnare il task. L'utente seleziona lo username e conferma. Il sistema registra l'assegnazione del task.
+	!!-Cancellazione assegnazione task: l'utente seleziona dall'elenco "NESSUNO", se il task era assegnato a qualcuno, gli viene rimosso. 
+
+
+
+5) Caso d'uso TAG:
+-Aggiunta di un tag al progetto: l'utente chiede al sistema di aggiungere un tag al progetto. Compila la form con: nome, colore e descrizione. Il sistema registra il nuovo tag e ne mostra i dati.
+	Se i dati sono incompleti mostra un messaggio d'errore.
+!!-Aggiornamento tag dal progetto: l'utente chide al sistema di modificare i dati di un tag di un progetto. Il sistema mostra la form per aggiornare i dati. L'utente aggiorna i dati e conferma. Il sistema aggiorna i dati del task e li mostra.
+	Se i dati sono incompleti mostra un messaggio d'errore.
+!!-Cancellazione tag: l'utente chide al sistema di cancellare un tag di un progetto. Il sistema mostra i dati del tag e chiede conferma. L'utente conferma e il sistema registra la cancellazione del tag.
+-Aggiunta tag a task: l'utente chiede al sistema di aggiungere un tag al task. Il sistema chiede di selezionare, da una lista di tags del progetto non ancora assegnati al task, i tags da assegnare. L'utente seleziona i tags e conferma. Il sistema registra l'assegnazione dei tags al task.
+!!-Cancellazione tag dal task: l'utente chide al sistema di cancellare un tag da un task. Il sistema registra la cancellazione del tag.
+
+
+
+6) Caso d'uso COMMENTO: 
+-Aggiunta di un commento ad un task : l'utente chiede al sistema di aggiungere un commento ad un task (task di progetti creati e visibili). Compila la form con il testo. Il sistema registra il nuovo commento.
+	Se i dati sono incompleti mostra un messaggio d'errore.
+!!-Cancellazione commento da un task di un progetto proprio: l'utente chide al sistema di cancellare un commento di un task. Il sistema registra la cancellazione del commento.
+!!-Cancellazione di un proprio commento da un task di un progetto condiviso: l'utente chide al sistema di cancellare un proprio commento da un task. Il sistema registra la cancellazione del commento.

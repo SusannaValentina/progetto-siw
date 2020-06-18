@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Aggiungi task</title>
+</head>
+<body>
+	<h1>Inserisci i dati del nuovo task</h1>
+	<form
+		th:action="@{'/home/progettiCreati/' + ${progetto.id} + '/creaTask'}"
+		method="POST">
+		<table>
+			<tr>
+				<td>Nome:</td>
+				<td><input th:field="${taskForm.nome}" type="text"
+					placeholder="NOME DEL TASK" /></td>
+				<td th:if="${#fields.hasErrors('taskForm.nome')}"
+					th:errors="${taskForm.nome}" th:style="'color:red'"></td>
+			</tr>
+			<tr>
+				<td>Descrizione:</td>
+				<td><textarea th:field="${taskForm.descrizione}" rows="4"
+						cols="35" placeholder="DESCRIZIONE DEL TASK"> </textarea></td>
+				<td th:if="${#fields.hasErrors('taskForm.descrizione')}"
+					th:errors="${taskForm.descrizione}" th:style="'color:red'"></td>
+			</tr>
+		</table>
+		<p>
+			<button type="submit">Salva</button>
+		</p>
+	</form>
+	<footer>
+		<p>
+			<a th:href="@{'/home/progettiCreati/' + ${progetto.id}}">Indietro</a>
+		</p>
+	</footer>
+</body>
+</html>

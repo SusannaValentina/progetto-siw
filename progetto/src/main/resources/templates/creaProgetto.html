@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Crea Progetto</title>
+</head>
+
+<body>
+	<h1>Inserisci i dati del nuovo progetto</h1>
+	<form th:action="@{/home/creaProgetto}" method="POST">
+		<table>
+			<tr>
+				<td>Nome </td>
+				<td><input th:field="${progetto.nome}"
+					type="text" placeholder="NOME DEL PROGETTO" /></td>
+				<td th:if="${#fields.hasErrors('progetto.nome')}"
+					th:errors="${progetto.nome}" th:style="'color:red'"></td>
+			</tr>
+		</table>
+		<p>
+			<button type="submit">Salva</button>
+		</p>
+	</form>
+	<footer>
+		<p>
+			<a th:href="@{/home}">Indietro</a>
+		</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Modifica task</title>
+</head>
+<body>
+	<h1>Modifica i dati del task</h1>
+	<form
+		th:action="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${taskForm.id} + '/modificaTask'}"
+		method="POST">
+		<table>
+			<tr>
+				<td>Nome:</td>
+				<td><input th:field="${taskForm.nome}" type="text"
+					value="${taskForm.nome}" /></td>
+				<td th:if="${#fields.hasErrors('taskForm.nome')}"
+					th:errors="${taskForm.nome}" th:style="'color:red'"></td>
+			</tr>
+			<tr>
+				<td>Descrizione:</td>
+				<td><textarea th:field="${taskForm.descrizione}" rows="4"
+						cols="35" th:value="${taskForm.descrizione}"> </textarea></td>
+				<td th:if="${#fields.hasErrors('taskForm.descrizione')}"
+					th:errors="${taskForm.descrizione}" th:style="'color:red'"></td>
+			</tr>
+			<tr>
+				<td>Data creazione:</td>
+				<td th:text="${taskForm.dataCreazione}"></td>
+			</tr>
+		</table>
+		<p>
+			<button type="submit">Salva</button>
+		</p>
+	</form>
+	<footer>
+		<p>
+			<a
+				th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${taskForm.id}}">Indietro</a>
+		</p>
+	</footer>
+</body>
+</html>

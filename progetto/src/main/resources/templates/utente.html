@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Utente</title>
+</head>
+<body>
+	<h1 th:text="'Ecco il profilo di ' +  ${credenziali.username}"></h1>
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td th:text=" ${credenziali.utente.nome}"></td>
+		</tr>
+		<tr>
+			<td>Cognome:</td>
+			<td th:text=" ${credenziali.utente.cognome}"></td>
+		</tr>
+		<tr>
+			<td>Data creazione profilo:</td>
+			<td th:text=" ${credenziali.utente.dataCreazione}"></td>
+		</tr>
+		<tr>
+			<td>Username:</td>
+			<td th:text=" ${credenziali.username}"></td>
+		</tr>
+		<tr>
+			<td>Ruolo:</td>
+			<td th:text=" ${credenziali.ruolo}"></td>
+		</tr>
+	</table>
+
+	<form
+		th:action="@{'/admin/credenziali' + ${credenziali.id} + '/modificaRuolo'}"
+		method="POST">
+		<p>
+			Seleziona ruolo: <select name="ruolo">
+				<option th:value="DEFAULT" th:text="DEFAULT"></option>
+				<option th:value="ADMIN" th:text="ADMIN"></option>
+			</select> <a>
+				<button type="submit">Salva modifica ruolo</button>
+			</a>
+		</p>
+	</form>
+
+	<h3>Progetti dell'utente:</h3>
+	<ul>
+		<li th:each="progetto : ${progetti}"><p>
+				<strong><a th:text=${progetto.nome}> </a></strong> <em><a
+					th:text="' DataInizio: ' + ${progetto.dataInizio}"
+					th:style="'color:grey'"></a></em> <a
+					th:href="@{'/admin/credenziali' + ${credenziali.id} + '/' + ${progetto.id} + '/cancellaProgettoDaAdmin'}">
+					<button type="submit">Cancella</button>
+				</a>
+			</p></li>
+	</ul>
+
+	<h3>Manda un messaggio all'utente:</h3>
+	<form
+		th:action="@{'/admin/credenziali' + ${credenziali.id} + '/creaMessaggio'}"
+		method="POST">
+		<table>
+			<tr>
+				<td><textarea th:field="${messaggioForm.testo}" rows="4"
+						cols="35" placeholder="TESTO DEL MESSAGGIO"> </textarea></td>
+				<td th:if="${#fields.hasErrors('messaggioForm.testo')}"
+					th:errors="${messaggioForm.testo}" th:style="'color:red'"></td>
+			</tr>
+		</table>
+		<p>
+			<button type="submit">Invia</button>
+		</p>
+	</form>
+
+	<footer>
+		<p>
+			<a th:href="@{/admin}">Torna indietro </a>
+		</p>
+	</footer>
+</body>
+</html>

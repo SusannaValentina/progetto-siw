@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Condividi progetto</title>
+</head>
+
+<body>
+	<h1>Inserisci lo username dell'utente con cui vuoi condividere il
+		progetto</h1>
+	<form
+		th:action="@{'/home/progettiCreati/' + ${progetto.id} + '/condividiProgetto'}"
+		method="POST">
+		<table>
+			<tr>
+				<td>Username:</td>
+				<td><input th:field="${credenzialiForm.username}" type="text"
+					placeholder="USERNAME UTENTE" /></td>
+				<td th:if="${#fields.hasErrors('credenzialiForm.username')}"
+					th:errors="${credenzialiForm.username}" th:style="'color:red'">
+				</td>
+			</tr>
+		</table>
+		<p>
+			<button type="submit">Condividi</button>
+		</p>
+	</form>
+	<footer>
+		<p>
+			<a th:href="@{'/home/progettiCreati/' + ${progetto.id}}">Indietro</a>
+		</p>
+	</footer>
+</body>
+</html>

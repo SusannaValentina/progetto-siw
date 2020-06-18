@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Task</title>
+</head>
+<body>
+	<h1>Seleziona i tag da aggiungere al task:</h1>
+	<form
+		th:action="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id} + '/aggiungiTagAlTask'}"
+		method="POST">
+		<ul>
+			<li th:each="tag : ${tagsDelProgetto}"><input type="checkbox"
+				name="tags" th:value="${tag.id}" /> <label th:text="${tag.nome}"></label>
+			</li>
+		</ul>
+		<p>
+			<button type="submit">Conferma</button>
+		</p>
+	</form>
+	<footer>
+		<p>
+			<a
+				th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id}}">Torna
+				al task</a>
+		</p>
+	</footer>
+</body>
+</head>

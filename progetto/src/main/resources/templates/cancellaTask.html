@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Task</title>
+</head>
+<body>
+	<h1>Sicuro di voler cancellare il task?</h1>
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td th:text=" ${task.nome}"></td>
+		</tr>
+		<tr>
+			<td>Descrizione:</td>
+			<td th:text=" ${task.descrizione}"></td>
+		</tr>
+		<tr>
+			<td>Assegnato a:</td>
+			<td th:text="${credenziali.username}"></td>
+		</tr>
+	</table>
+	<p>
+		<a th:href="@{'/home/progettiCreati/' + ${progetto.id}}">
+			<button type="submit">Indietro</button>
+		</a>
+	</p>
+	<form
+		th:action="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id} + '/cancellaTask'}"
+		method="POST">
+		<a><button type="submit">Conferma</button></a>
+	</form>
+</body>
+</html>

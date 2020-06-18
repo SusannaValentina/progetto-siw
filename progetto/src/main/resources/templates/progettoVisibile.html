@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Progetto</title>
+</head>
+<body>
+	<h1>Progetto condiviso:</h1>
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td th:text=" ${progetto.nome}"></td>
+		</tr>
+		<tr>
+			<td>Data di inizio:</td>
+			<td th:text=" ${progetto.dataInizio}"></td>
+		</tr>
+		<tr>
+			<td>Proprietario:</td>
+			<td th:text=" ${credenzialiProprietario.username}"></td>
+		</tr>
+	</table>
+
+	<h3>Tasks del progetto assegnati a me:</h3>
+	<ul>
+		<li th:each="task : ${tasksAssegnati}"><strong><a
+				th:href="@{'/home/progettiVisibili/' + ${progetto.id} + '/' + ${task.id}}"
+				th:text="${task.nome}"> </a></strong></li>
+	</ul>
+
+	<h3>Altri tasks del progetto:</h3>
+	<ul>
+		<li th:each="task : ${tasksAltri}"><strong><a
+				th:href="@{'/home/progettiVisibili/' + ${progetto.id} + '/' + ${task.id}}"
+				th:text="${task.nome}"> </a></strong></li>
+	</ul>
+
+	<h3>Progetto condiviso con:</h3>
+	<ul>
+		<li th:each="credenziali : ${credenzialiVisibili}">
+			<p>
+				<a th:text="${credenziali.username}"></a>
+			</p>
+		</li>
+	</ul>
+	<footer>
+		<p>
+			<a th:href="@{/home/progettiVisibili}">Progetti condivisi</a>
+		</p>
+		<p>
+			<a th:href="@{/home}">Home</a>
+		</p>
+	</footer>
+</body>
+</html>

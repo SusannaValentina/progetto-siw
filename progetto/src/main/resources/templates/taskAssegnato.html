@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Task</title>
+</head>
+<body>
+	<h1>Task del progetto</h1>
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td th:text="${task.nome}"></td>
+		</tr>
+		<tr>
+			<td>Descrizione:</td>
+			<td th:text="${task.descrizione}"></td>
+		</tr>
+		<tr>
+			<td>Data creazione:</td>
+			<td th:text="${task.dataCreazione}"></td>
+		</tr>
+	</table>
+
+	<h3>Tags del task:</h3>
+	<ul>
+		<li th:each="tag : ${tags}"><p>
+			<div>
+				<strong th:text="'#' + ${tag.nome}"></strong> <a
+					th:text="${tag.colore}" th:style="'color:grey'"></a>
+			</div>
+			<div>
+				<em th:text="${tag.descrizione}" th:style="'color:grey'"></em>
+			</div></li>
+	</ul>
+
+	<h3>I miei commenti:</h3>
+	<ul>
+		<li th:each="commento : ${commentiMiei}"><p>
+			<div>
+				<em th:text="${commento.testo}"> </em>
+			</div>
+			<div>
+				<a
+					th:href="@{'/home/progettiVisibili/' + ${progetto.id} + '/' + ${task.id} + '/' + ${commento.id} + '/cancellaCommento'}">
+					<button type="submit">Cancella commento</button>
+				</a>
+
+			</div>
+			</p></li>
+	</ul>
+	<p>
+		<a
+			th:href="@{'/home/progettiVisibili/' + ${progetto.id} + '/' + ${task.id} + '/creaCommento'}">
+			<button type="submit">Aggiungi commento al task</button>
+		</a>
+	</p>
+
+	<h3>Altri commenti del task:</h3>
+	<ul>
+		<li th:each="commento : ${commenti}"><p>
+			<div>
+				<strong
+					th:text="${commento.utente.nome} + ' ' + ${commento.utente.cognome}">
+				</strong>
+			</div>
+			<div>
+				<em th:text="${commento.testo}"> </em>
+			</div></li>
+	</ul>
+
+	<footer>
+		<p>
+			<a th:href="@{'/home/progettiVisibili/' + ${progetto.id}}">Torna
+				al progetto</a>
+		</p>
+		<p>
+			<a th:href="@{/home}">Home</a>
+		</p>
+	</footer>
+</body>
+</html>

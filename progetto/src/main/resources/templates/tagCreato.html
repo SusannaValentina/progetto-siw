@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Tag</title>
+</head>
+<body>
+	<h1>Tag del progetto</h1>
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td th:text="${tag.nome}"></td>
+		</tr>
+		<tr>
+			<td>Colore:</td>
+			<td th:text="${tag.colore}"></td>
+		</tr>
+		<tr>
+			<td>Descrizione:</td>
+			<td th:text="${tag.descrizione}"></td>
+		</tr>
+	</table>
+	<p>
+		<a
+			th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${tag.id} + '/modificaTag'}">
+			<button type="submit">Modifica i dati</button>
+		</a>
+	</p>
+
+	<h3>Tasks che usano questo tag:</h3>
+	<ul>
+		<li th:each="task : ${tasks}"><p>
+				<strong><a
+					th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id}}"
+					th:text="${task.nome}"> </a></strong>
+			</p></li>
+	</ul>
+	<footer>
+		<p>
+			<a th:href="@{'/home/progettiCreati/' + ${progetto.id}}">Torna al
+				progetto</a>
+		</p>
+		<p>
+			<a th:href="@{/home}">Home</a>
+		</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Modifica tag</title>
+</head>
+<body>
+	<h1>Modifica i dati del tag</h1>
+	<form
+		th:action="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${tagForm.id} + '/modificaTag'}"
+		method="POST">
+		<table>
+			<tr>
+				<td>Nome:</td>
+				<td><input th:field="${tagForm.nome}" type="text"
+					value="${tagForm.nome}" /></td>
+				<td th:if="${#fields.hasErrors('tagForm.nome')}"
+					th:errors="${tagForm.nome}" th:style="'color:red'"></td>
+			</tr>
+			<tr>
+				<td>Colore:</td>
+				<td><input th:field="${tagForm.colore}" type="text"
+					value="${tagForm.colore}" /></td>
+				<td th:if="${#fields.hasErrors('tagForm.colore')}"
+					th:errors="${tagForm.colore}" th:style="'color:red'"></td>
+			</tr>
+			<tr>
+				<td>Descrizione:</td>
+				<td><textarea th:field="${tagForm.descrizione}" rows="4"
+						cols="35" value="${tagForm.descrizione}"> </textarea></td>
+				<td th:if="${#fields.hasErrors('tagForm.descrizione')}"
+					th:errors="${tagForm.descrizione}" th:style="'color:red'"></td>
+			</tr>
+		</table>
+		<p>
+			<button type="submit">Salva</button>
+		</p>
+	</form>
+	<footer>
+		<p>
+			<a
+				th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/tag' + ${tagForm.id}}">Indietro</a>
+		</p>
+	</footer>
+</body>
+</html>

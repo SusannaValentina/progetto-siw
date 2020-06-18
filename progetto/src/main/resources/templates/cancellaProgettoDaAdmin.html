@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Progetto</title>
+</head>
+<body>
+	<h1>Sicuro di voler cancellare il progetto?</h1>
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td th:text=" ${progetto.nome}"></td>
+		</tr>
+		<tr>
+			<td>Data di inizio:</td>
+			<td th:text=" ${progetto.dataInizio}"></td>
+		</tr>
+		<tr>
+			<td>Proprietario:</td>
+			<td th:text=" ${credenziali.username}"></td>
+		</tr>
+	</table>
+	<p>
+		<a th:href="@{'/admin/credenziali' + ${credenziali.id}}">
+			<button type="submit">Indietro</button>
+		</a>
+	</p>
+	<form
+		th:action="@{'/admin/credenziali' + ${credenziali.id} + '/' + ${progetto.id} +'/cancellaProgettoDaAdmin'}"
+		method="POST">
+		<a><button type="submit">Conferma</button></a>
+	</form>
+</body>
+</html>

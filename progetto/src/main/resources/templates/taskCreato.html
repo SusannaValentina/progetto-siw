@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Task</title>
+</head>
+<body>
+	<h1>Task del progetto</h1>
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td th:text="${task.nome}"></td>
+		</tr>
+		<tr>
+			<td>Descrizione:</td>
+			<td th:text="${task.descrizione}"></td>
+		</tr>
+		<tr>
+			<td>Data creazione:</td>
+			<td th:text="${task.dataCreazione}"></td>
+		</tr>
+		<tr>
+			<td>Assegnato a:</td>
+			<td th:text="${credenziali.username}"></td>
+		</tr>
+	</table>
+	<p>
+		<a
+			th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id} + '/modificaTask'}">
+			<button type="submit">Modifica i dati</button>
+		</a>
+	</p>
+
+	<p>
+		<a
+			th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id} + '/assegnaTask'}">
+			<button type="submit">Assegna o rimuovi il task da un utente</button>
+		</a>
+	</p>
+
+	<h3>Tags del task:</h3>
+	<ul>
+		<li th:each="tag : ${tags}"><p>
+				<strong><a
+					th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/tag' + ${tag.id}}"
+					th:text="'#' + ${tag.nome}"> </a></strong> <a
+					th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id} + '/' + ${tag.id} + '/cancellaTagDalTask'}">
+					<button type="submit">Cancella tag dal task</button>
+				</a>
+			</p></li>
+	</ul>
+	<p>
+		<a
+			th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id} + '/aggiungiTagAlTask'}">
+			<button type="submit">Aggiungi tag al task</button>
+		</a>
+	</p>
+
+	<h3>Commenti del task:</h3>
+	<ul>
+		<li th:each="commento : ${commenti}"><p>
+			<div>
+				<strong
+					th:text="${commento.utente.nome} + ' ' + ${commento.utente.cognome}">
+				</strong> <a
+					th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id} + '/' + ${commento.id} + '/cancellaCommento'}">
+					<button type="submit">Cancella commento</button>
+				</a>
+			</div>
+			<div>
+				<em th:text="${commento.testo}"> </em>
+			</div></li>
+	</ul>
+	<p>
+		<a
+			th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id} + '/creaCommento'}">
+			<button type="submit">Aggiungi commento al task</button>
+		</a>
+	</p>
+
+	<footer>
+		<p>
+			<a th:href="@{'/home/progettiCreati/' + ${progetto.id}}">Torna al
+				progetto</a>
+		</p>
+		<p>
+			<a th:href="@{/home}">Home</a>
+		</p>
+	</footer>
+</body>
+</html>

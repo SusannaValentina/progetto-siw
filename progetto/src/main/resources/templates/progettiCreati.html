@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>I miei progetti</title>
+</head>
+<body>
+	<h1>Progetti creati:</h1>
+	<ul>
+		<li th:each="progetto : ${progettiCreati}">
+			<p>
+				<strong><a
+					th:href="@{'/home/progettiCreati/' + ${progetto.id}}"
+					th:text="${progetto.nome}"> </a></strong> <em><a
+					th:text="' DataInizio: ' + ${progetto.dataInizio}"
+					th:style="'color:grey'"></a></em> <a
+					th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/cancellaProgetto'}">
+					<button type="submit">Cancella</button>
+				</a>
+			</p>
+		</li>
+	</ul>
+	<footer>
+		<p>
+			<a th:href="@{/home}">Indietro</a>
+		</p>
+	</footer>
+</body>
+</html>

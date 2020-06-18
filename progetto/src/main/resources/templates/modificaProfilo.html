@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Profilo</title>
+</head>
+<body>
+	<h1>Il mio profilo</h1>
+	<form th:action="@{/home/profilo/modificaProfilo}" method="POST">
+		<table>
+			<tr>
+				<td>Nome:</td>
+				<td><input th:field="${utenteForm.nome}" type="text"
+					value="${utenteForm.nome}"></td>
+				<td th:if="${#fields.hasErrors('utenteForm.nome')}"
+					th:errors="${utenteForm.nome}" th:style="'color:red'"></td>
+
+			</tr>
+			<tr>
+				<td>Cognome:</td>
+				<td><input th:field="${utenteForm.cognome}" type="text"
+					value="${utenteForm.cognome}"></td>
+				<td th:if="${#fields.hasErrors('utenteForm.cognome')}"
+					th:errors="${utenteForm.cognome}" th:style="'color:red'"></td>
+			</tr>
+			<tr>
+				<td>Username:</td>
+				<td><input th:field="${credenzialiForm.username}" type="text"
+					value="${credenzialiForm.username}"></td>
+				<td th:if="${#fields.hasErrors('credenzialiForm.username')}"
+					th:errors="${credenzialiForm.username}" th:style="'color:red'"></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input th:field="${credenzialiForm.password}"
+					th:type="password" value="${credenzialiForm.password}"></td>
+				<td th:if="${#fields.hasErrors('credenzialiForm.password')}"
+					th:errors="${credenzialiForm.password}" th:style="'color:red'"></td>
+			</tr>
+		</table>
+		<p>
+			<button type="submit">Salva</button>
+		</p>
+	</form>
+	<footer>
+		<p>
+			<a th:href="@{/home}">Home</a>
+		</p>
+	</footer>
+</body>
+</html>

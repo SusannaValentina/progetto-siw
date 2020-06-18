@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Aggiungi commento</title>
+</head>
+<body>
+	<h1>Inserisci i dati del nuovo commento</h1>
+	<form
+		th:action="@{'/home/progettiVisibili/' + ${progetto.id} + '/' + ${task.id} + '/creaCommento'}"
+		method="POST">
+		<table>
+			<tr>
+				<td>Testo:</td>
+				<td><textarea th:field="${commentoForm.testo}" rows="4"
+						cols="35" placeholder="TESTO DEL COMMENTO"> </textarea></td>
+				<td th:if="${#fields.hasErrors('commentoForm.testo')}"
+					th:errors="${commentoForm.testo}" th:style="'color:red'"></td>
+			</tr>
+		</table>
+		<p>
+			<button type="submit">Salva</button>
+		</p>
+	</form>
+	<footer>
+		<p>
+			<a
+				th:href="@{'/home/progettiVisibili/' + ${progetto.id} + '/' + ${task.id}}">Indietro</a>
+		</p>
+	</footer>
+</body>
+</html>

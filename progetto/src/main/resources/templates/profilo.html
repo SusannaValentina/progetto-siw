@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Profilo</title>
+</head>
+<body>
+	<h1>Il mio profilo</h1>
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td th:text=" ${utente.nome}"></td>
+		</tr>
+		<tr>
+			<td>Cognome:</td>
+			<td th:text="${utente.cognome}"></td>
+		</tr>
+		<tr>
+			<td>Data creazione profilo:</td>
+			<td th:text=" ${utente.dataCreazione}"></td>
+		</tr>
+		<tr>
+			<td>Username:</td>
+			<td th:text=" ${credenziali.username}"></td>
+		</tr>
+		<tr>
+			<td>Il tuo ruolo:</td>
+			<td th:text=" ${credenziali.ruolo}"></td>
+		</tr>
+	</table>
+	<p>
+		<a href="/home/profilo/modificaProfilo">
+			<button type="submit">Modifica i dati</button>
+		</a>
+	</p>
+
+	<h3>Messaggi dagli admin:</h3>
+	<ul>
+		<li th:each="messaggio : ${messaggi}">
+			<div>
+				<em th:text="${messaggio.testo}"></em>
+			</div>
+		</li>
+	</ul>
+	<footer>
+		<p>
+			<a th:href="@{/home}">Home</a>
+		</p>
+	</footer>
+</body>
+</html>

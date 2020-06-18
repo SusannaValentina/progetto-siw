@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+<title>Home</title>
+</head>
+<body>
+	<h1 th:text="'Benvenuto, utente ' + ${utente.nome} + '!'"></h1>
+	<h4>
+		<a href="/home/profilo">Il mio profilo</a>
+	</h4>
+	<h4>
+		<a href="/home/creaProgetto">Crea nuovo progetto</a>
+	</h4>
+	<h4>
+		<a href="/home/progettiCreati">I miei progetti</a>
+	</h4>
+	<h4>
+		<a href="/home/progettiVisibili">I progetti condivisi con me</a>
+	</h4>
+	<h4>
+		<a href="/logout">Logout</a>
+	</h4>
+	<em>
+		<h2>
+			<a href="/admin">Passa alla pagina da amministartore</a>
+		</h2>
+	</em>
+</body>
+</html>

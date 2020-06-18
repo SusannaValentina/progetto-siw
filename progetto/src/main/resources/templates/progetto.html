@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Progetto</title>
+</head>
+<body>
+	<h1>Il mio progetto:</h1>
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td th:text=" ${progetto.nome}"></td>
+		</tr>
+		<tr>
+			<td>Data di inizio:</td>
+			<td th:text=" ${progetto.dataInizio}"></td>
+		</tr>
+	</table>
+	<p>
+		<a
+			th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/modificaProgetto'}">
+			<button type="submit">Modifica i dati</button>
+		</a>
+	</p>
+
+	<h3>Tasks del progetto:</h3>
+	<ul>
+		<li th:each="task : ${tasks}"><p>
+				<strong><a
+					th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' +${task.id}}"
+					th:text="${task.nome}"> </a></strong> <em><a
+					th:text="' DataCrezione: ' + ${task.dataCreazione}"
+					th:style="'color:grey'"></a></em> <a
+					th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${task.id} + '/cancellaTask'}">
+					<button type="submit">Cancella</button>
+				</a>
+			</p></li>
+	</ul>
+	<p>
+		<a th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/creaTask'}">
+			<button type="submit">Aggiungi task</button>
+		</a>
+	</p>
+
+	<h3>Tags del progetto:</h3>
+	<ul>
+		<li th:each="tag : ${tags}"><p>
+				<strong><a
+					th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/tag' +${tag.id}}"
+					th:text="'#' + ${tag.nome}"> </a></strong> <a
+					th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/' + ${tag.id} + '/cancellaTag'}">
+					<button type="submit">Cancella</button>
+				</a>
+			</p></li>
+	</ul>
+	<p>
+		<a th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/creaTag'}">
+			<button type="submit">Aggiungi tag</button>
+		</a>
+	</p>
+
+	<h3>Progetto condiviso con:</h3>
+	<ul>
+		<li th:each="credenziali : ${credenzialiVisibili}">
+			<p>
+				<a th:text="${credenziali.username}"></a>
+			</p>
+		</li>
+	</ul>
+	<p>
+		<a
+			th:href="@{'/home/progettiCreati/' + ${progetto.id} + '/condividiProgetto'}">
+			<button type="submit">Condividi progetto</button>
+		</a>
+	</p>
+	<footer>
+		<p>
+			<a th:href="@{/home/progettiCreati}">Progetti creati</a>
+		</p>
+		<p>
+			<a th:href="@{/home}">Home</a>
+		</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Admin</title>
+</head>
+<body>
+	<h1 th:text="'Benvenuto, admin ' + ${utente.nome} + '!'"></h1>
+
+	<h3>Tutti gli utenti:</h3>
+	<ul>
+		<li th:each="cred : ${credenziali}">
+			<p>
+				<strong><a th:href="@{'/admin/credenziali' + ${cred.id}}"
+					th:text="${cred.username}"> </a></strong> <a
+					th:href="@{'/admin/credenziali' + ${cred.id} + '/cancellaUtente'}">
+					<button type="submit">Cancella</button>
+				</a>
+			</p>
+		</li>
+	</ul>
+
+
+	<h2>
+		<em><a href="/home">Esci dalla pagina da amministartore</a></em>
+	</h2>
+
+</body>
+</html>
